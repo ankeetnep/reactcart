@@ -14,7 +14,8 @@ export const CartRedux=(state=initialState,action)=>{
                 const updateCart = state.cart.map((item)=> item.id===itemToAdd.id?{...item,quantity: item.quantity+1}:item);
                 // create a new state object with update
                 return{
-                    ...state,cart: updateCart
+                    ...state,
+                    cart: updateCart
                 }
             }else{
                 return{
@@ -23,20 +24,48 @@ export const CartRedux=(state=initialState,action)=>{
                 }
             }
             case "decre":
-                const updateremoveCart= state.cart.map((item)=>{
-                    if(item.id === action.payload && item.quantity > 1){
-                        return{
-                            ...item, quantity: item.quantity -1
-                        };
-                    }
-                    return item
-                })
-                // If quantity is 1 or less, remove the item fron the cart
-                const updateCartfromCart = state.cart.filter((item)=> item.id!==action.payload)
+                const itemToRemove = state.cart.find((item) => item.id === action.payload);
+
+      if (itemToRemove && itemToRemove.quantity > 1) {
+        const updatedCart = state.cart.map((item) =>
+          item.id === itemToRemove.id ? { ...item, quantity: item.quantity - 1 } : item
+        );
+
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      } else if (itemToRemove && itemToRemove.quantity === 1) {
+        // If quantity is 1, remove the item from the cart
+        const updatedCartWithoutItem = state.cart.filter((item) => item.id !== action.payload);
+
+        return {
+          ...state,
+          cart: updatedCartWithoutItem,
+        };
+      }
+        case "deletehandle":
+            const delect= state.cart.filter((item)=> item.id !== action.payload)
+
+            return{
+                ...state,
+                cart: delect
+            }
+            case "amount":
+                let sum = 0;
+                state.cart.forEach((item)=> (sum+= item.price * item.quantity))
+                const updateshipping = state.shipping>1000?0:200
+                const updatetax = parseFloat((state.tax*0.16).toFixed(2))
+                const updateTotal = sum+state.tax+ state.shipping
 
                 return{
-                    ...state, cart:updateCartfromCart.length>0?updateremoveCart:updateCartfromCart
+                    ...state,
+                    subTotal: sum,
+                    shipping: updateshipping,
+                    tax: updatetax,
+                    total: updateTotal
                 }
+
             default: return state
     }
 }

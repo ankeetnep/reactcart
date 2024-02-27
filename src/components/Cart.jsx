@@ -4,12 +4,15 @@ import {AiFillDelete} from "react-icons/ai"
 import {useSelector,useDispatch} from "react-redux"
 
 const Cart = () => {
-const {cart} = useSelector((state)=> state.addToCart)
+const {cart,subTotal,tax,shipping,total} = useSelector((state)=> state.addToCart)
 const dispatch = useDispatch()
   const increment=(id)=>{
       dispatch({
         type: "add",
         payload: {id}
+      })
+      dispatch({
+        type: "amount"
       })
   }
   const decrement=(id)=>{
@@ -17,8 +20,18 @@ const dispatch = useDispatch()
       type: "decre",
       payload: id
     })
+    dispatch({
+      type: "amount"
+    })
   }
   const deleteHandler=(id)=>{
+    dispatch({
+      type: "deletehandle",
+      payload: id
+    })
+    dispatch({
+      type: "amount"
+    })
   }
 
   return (
@@ -31,10 +44,10 @@ const dispatch = useDispatch()
         }
         </main>
       <aside>
-        <h2>Subtotal: ${2000}</h2>
-        <h2>Shipping: ${10}</h2>
-        <h2>Tax: ${5}</h2>
-        <h2>Total: ${2015}</h2>
+        <h2>SubTotal:{subTotal}</h2>
+        <h2>Shipping:{shipping}</h2>
+        <h2>Tax:{tax}</h2>
+        <h2>Total:{total}</h2>
       </aside>
     </div>
   )

@@ -8,4 +8,4 @@ const store=configureStore({
       addToCart: CartRedux
     }
 })
-export default store
+export default store;

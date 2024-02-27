@@ -18,6 +18,9 @@ const Home = () => {
       type: "add",
       payload: options
     })
+    dispatch({
+      type: "amount"
+    })
     toast.success("Item")
   }
   const productItem=[
