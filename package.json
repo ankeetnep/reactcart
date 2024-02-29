@@ -1,6 +1,7 @@
 {
   "name": "ankit",
   "version": "0.1.0",
+  "homepage": "https://github.com/ankeetnep/ecommerce.git",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
