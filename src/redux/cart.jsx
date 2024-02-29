@@ -23,6 +23,7 @@ export const CartRedux=(state=initialState,action)=>{
                     cart: [...state.cart,{...itemToAdd,quantity:1}]
                 }
             }
+            break;
             case "decre":
                 const itemToRemove = state.cart.find((item) => item.id === action.payload);
 
@@ -44,6 +45,7 @@ export const CartRedux=(state=initialState,action)=>{
           cart: updatedCartWithoutItem,
         };
       }
+      break;
         case "deletehandle":
             const delect= state.cart.filter((item)=> item.id !== action.payload)
 
@@ -51,21 +53,18 @@ export const CartRedux=(state=initialState,action)=>{
                 ...state,
                 cart: delect
             }
+            break
             case "amount":
-                let sum = 0;
-                state.cart.forEach((item)=> (sum+= item.price * item.quantity))
-                const updateshipping = state.shipping>1000?0:200
-                const updatetax = parseFloat((state.tax*0.16).toFixed(2))
-                const updateTotal = sum+state.tax+ state.shipping
-
-                return{
-                    ...state,
-                    subTotal: sum,
-                    shipping: updateshipping,
-                    tax: updatetax,
-                    total: updateTotal
-                }
-
-            default: return state
+                  let sum = 0;
+                  state.cart.forEach((item) => (sum += item.price * item.quantity));
+                  return {
+                      ...state,
+                      subTotal: sum,
+                      shipping: sum > 1000 ? 0 : 200,
+                      total: sum + state.tax + (sum > 1000 ? 0 : 200)
+                  };
+              
+              default:
+                  return state;
     }
 }

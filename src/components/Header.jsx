@@ -19,10 +19,10 @@ const Header = () => {
       <div>
         <Link to="/">Home</Link>
         {isLogged&& 
-        (<Link to="/logout" onClick={handleLogout}>Logout</Link>)
+        (<Link to="/login" onClick={handleLogout}>Logout</Link>)
         }
 {!isLogged&&(<Link to="/login">Login</Link>)}
-{isLogged&&(<Link to="/cart"><FiShoppingBag/><p>{cart.length}</p></Link>)}
+{isLogged&&(<Link to="/admin/cart"><FiShoppingBag/><p>{cart.length}</p></Link>)}
       </div>
     </nav>
     </>

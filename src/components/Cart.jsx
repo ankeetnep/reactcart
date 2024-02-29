@@ -52,7 +52,7 @@ const dispatch = useDispatch()
     </div>
   )
 }
-const CartItem=({imgSrc,name,price,handle,deleteHandler,id,qty,key,increment,decrement})=>{
+const CartItem=({imgSrc,name,price,deleteHandler,id,qty,increment,decrement})=>{
   return(
     <>
   <div className="cartitem">
