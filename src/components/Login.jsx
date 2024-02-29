@@ -12,7 +12,7 @@ const Login = () => {
     const email = e.target.elements.email.value 
     const pass = e.target.elements.password.value
     if(email==="ankeetnepali6@gmail.com" && pass==="ankit"){
-        nav("/admin/cart")
+      nav("/admin/cart")
         toast.success("Login sucessful")
         const token = "12345";
         localStorage.setItem("_token",token)
