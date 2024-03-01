@@ -14,7 +14,7 @@ import './styles/color.scss'
 import './styles/home.scss'
 
 const authWrapper=[{
-  path: "/cart",
+  path: "/admin/cart",
   element: <Cart/>
 },
 
