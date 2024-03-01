@@ -25,7 +25,7 @@ const Header = () => {
         (<Link to="/dashboard">Dashboard</Link>)
         }
 {!isLogged&&(<Link to="/login">Login</Link>)}
-<Link to="/admin/cart"><FiShoppingBag/><p>{cart.length}</p></Link>
+<Link to="/cart"><FiShoppingBag/><p>{cart.length}</p></Link>
       </div>
     </nav>
     </>
